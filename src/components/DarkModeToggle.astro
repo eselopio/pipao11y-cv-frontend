@@ -13,29 +13,25 @@
 </button>
 
 <script>
+  const VIEW_TRANSITION_DURATION = 400
+
   class DarkModeManager {
-    toggle: HTMLElement | null;
-    sunIcon: HTMLElement | null;
-    moonIcon: HTMLElement | null;
-    isDark: boolean;
+    toggle: HTMLElement | null
+    sunIcon: HTMLElement | null
+    moonIcon: HTMLElement | null
+    isDark: boolean
 
     constructor() {
       this.toggle = document.getElementById('dark-mode-toggle')
       this.sunIcon = document.getElementById('sun-icon')
       this.moonIcon = document.getElementById('moon-icon')
       this.isDark = this.getInitialTheme()
-      
       this.init()
     }
 
     getInitialTheme() {
-      // Verificar si hay preferencia guardada
       const saved = localStorage.getItem('dark-mode')
-      if (saved !== null) {
-        return saved === 'true'
-      }
-      
-      // Si no hay preferencia guardada, usar la preferencia del sistema
+      if (saved !== null) return saved === 'true'
       return window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
@@ -46,11 +42,8 @@
     }
 
     applyTheme() {
-      if (this.isDark) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+      if (this.isDark) document.documentElement.classList.add('dark')
+      else document.documentElement.classList.remove('dark')
     }
 
     updateIcon() {
@@ -63,20 +56,57 @@
       }
     }
 
-    toggleTheme() {
+    performToggle() {
       this.isDark = !this.isDark
       this.applyTheme()
       this.updateIcon()
       localStorage.setItem('dark-mode', this.isDark.toString())
     }
 
+    async toggleTheme() {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const useViewTransition =
+        !reducedMotion &&
+        typeof document.startViewTransition === 'function' &&
+        this.toggle
+
+      if (useViewTransition && this.toggle) {
+        const toggle = this.toggle
+        const vt = document.startViewTransition(() => {
+          this.performToggle()
+        })
+        await vt.ready
+        const { top, left, width, height } = toggle.getBoundingClientRect()
+        const x = left + width / 2
+        const y = top + height / 2
+        const maxRadius = Math.hypot(
+          Math.max(left, window.innerWidth - left),
+          Math.max(top, window.innerHeight - top)
+        )
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${maxRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: VIEW_TRANSITION_DURATION,
+            easing: 'ease-in-out',
+            pseudoElement: '::view-transition-new(root)',
+          } as KeyframeAnimationOptions
+        )
+      } else {
+        this.performToggle()
+      }
+    }
+
     setupEventListeners() {
-      // Click en el botón
-      this.toggle?.addEventListener('click', () => {
+      this.toggle?.addEventListener('click', (e) => {
+        e.preventDefault()
         this.toggleTheme()
       })
 
-      // Hotkey Ctrl/Cmd + D
       document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
           e.preventDefault()
@@ -84,9 +114,7 @@
         }
       })
 
-      // Escuchar cambios en la preferencia del sistema
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        // Solo cambiar si no hay preferencia guardada
         if (localStorage.getItem('dark-mode') === null) {
           this.isDark = e.matches
           this.applyTheme()
@@ -96,7 +124,6 @@
     }
   }
 
-  // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => new DarkModeManager())
   } else {

@@ -1,0 +1,134 @@
+---
+interface Props {
+  class?: string
+  delay?: number
+  duration?: number
+  offset?: number
+  direction?: "up" | "down" | "left" | "right"
+  inView?: boolean
+  inViewMargin?: string
+  blur?: string
+}
+
+const {
+  class: className = "",
+  delay = 0,
+  duration = 0.4,
+  offset = 6,
+  direction = "down",
+  inView = true,
+  inViewMargin = "-50px",
+  blur = "6px",
+} = Astro.props
+
+const axis = direction === "left" || direction === "right" ? "x" : "y"
+const hiddenOffset = direction === "right" || direction === "down" ? -offset : offset
+const uniqueId = `blur-fade-${Math.random().toString(36).slice(2, 11)}`
+---
+
+<div
+  id={uniqueId}
+  class={`blur-fade ${className}`}
+  data-delay={delay}
+  data-duration={duration}
+  data-offset={offset}
+  data-direction={direction}
+  data-axis={axis}
+  data-hidden-offset={hiddenOffset}
+  data-blur={blur}
+  data-in-view={inView}
+  data-in-view-margin={inViewMargin}
+>
+  <slot />
+</div>
+
+<script>
+  function initBlurFade() {
+    if ((window as { __blurFadeInit?: boolean }).__blurFadeInit) return
+    ;(window as { __blurFadeInit?: boolean }).__blurFadeInit = true
+
+    const inViewContainers = document.querySelectorAll<HTMLElement>(
+      ".blur-fade[data-in-view='true']"
+    )
+    const noViewContainers = document.querySelectorAll<HTMLElement>(
+      ".blur-fade[data-in-view='false']"
+    )
+
+    function setupContainer(container: HTMLElement, runImmediate: boolean) {
+      const delay = Number(container.dataset.delay) ?? 0
+      const axis = container.dataset.axis ?? "y"
+      const hiddenOffset = Number(container.dataset.hiddenOffset) ?? -6
+      const blur = container.dataset.blur ?? "6px"
+      const duration = Number(container.dataset.duration) ?? 0.4
+
+      const runDelay = 0.04 + delay
+      const translate =
+        axis === "x"
+          ? `translateX(${hiddenOffset}px)`
+          : `translateY(${hiddenOffset}px)`
+
+      container.style.setProperty("--bf-delay", `${runDelay}s`)
+      container.style.setProperty("--bf-duration", `${duration}s`)
+      container.style.setProperty("--bf-translate-start", translate)
+      container.style.setProperty("--bf-blur", blur)
+
+      if (runImmediate) {
+        requestAnimationFrame(() => {
+          container.classList.add("blur-fade-visible")
+        })
+        return
+      }
+
+      const margin = container.dataset.inViewMargin ?? "-50px"
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("blur-fade-visible")
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0, rootMargin: margin }
+      )
+      observer.observe(container)
+    }
+
+    inViewContainers.forEach((c) => setupContainer(c, false))
+    noViewContainers.forEach((c) => setupContainer(c, true))
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBlurFade)
+  } else {
+    initBlurFade()
+  }
+</script>
+
+<style>
+  .blur-fade {
+    opacity: 0;
+    filter: blur(var(--bf-blur, 6px));
+    transform: var(--bf-translate-start, translateY(-6px));
+    transition:
+      opacity var(--bf-duration, 0.4s) ease-out,
+      filter var(--bf-duration, 0.4s) ease-out,
+      transform var(--bf-duration, 0.4s) ease-out;
+    transition-delay: var(--bf-delay, 0.04s);
+  }
+
+  .blur-fade.blur-fade-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0);
+  }
+
+  @media print {
+    .blur-fade {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

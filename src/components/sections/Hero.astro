@@ -8,6 +8,7 @@ import LinkedIn from "@/icons/LinkedIn.astro"
 import GitHub from "@/icons/GitHub.astro"
 import WorldMap from "@/icons/WorldMap.astro"
 import TypingAnimation from "@/components/TypingAnimation.astro"
+import BlurFade from "@/components/BlurFade.astro"
 import type { SocialIcon } from "@/types"
 
 const { name, label, image, location, profiles, phone, email } = basics
@@ -82,9 +83,11 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         }
       </footer>
     </div>
-    <figure>
-      <img src={image} alt={name} />
-    </figure>
+    <BlurFade delay={1} inView={true} direction="down">
+      <figure>
+        <img src={image} alt={name} />
+      </figure>
+    </BlurFade>
   </div>
 </Section>
 
