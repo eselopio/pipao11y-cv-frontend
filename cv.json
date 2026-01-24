@@ -1,68 +1,103 @@
 {
   "basics": {
-    "name": "Miguel Ángel Durán",
-    "label": "Full Stack Developer con más de 15 años de experiencia & Creador de Contenido de Programación",
+    "name": "Felipe Calderón [Pipa, Pipe] 👋",
+    "label": "Ingeniero de Software y observabilista 🔭 Data driven dev ❤️",
     "image": "/me.webp",
-    "email": "miduga@gmail.com",
-    "phone": "+34 688888888",
-    "url": "https://midu.dev",
-    "summary": "+15 años de experiencia como Desarrollador Web. Actualmente soy Creador de Contenido y Divulgador sobre Programación. Vivo en Barcelona, España. He trabajado en diferentes entornos: desde acelerar el desarrollo de start-ups hasta liderando equipos de empresas multinacionales.",
+    "email": "f.calderon1988@gmail.com",
+    "phone": "+56 9 999999999",
+    "url": "https://felipecalderon1.com",
+    "summary": "Ingeniero de Software con +10 años construyendo productos digitales de alto impacto en fintech, aeronáutica, retail y edtech. Especialista en full-stack (JavaScript/TypeScript, Node, React), observabilidad basada en SLO y métricas, y evolución de monolitos a arquitecturas escalables. Experiencia liderando iniciativas de monitoreo, documentación y comunidades técnicas. Perfil data-driven, orientado a resultados y acostumbrado a entornos B2B/B2C de operación global. Resido en Santiago, Chile.",
     "location": {
       "address": "",
       "postalCode": "08820",
-      "city": "el Prat de Llobregat",
-      "countryCode": "ES",
-      "region": "España"
+      "city": "Santiago",
+      "countryCode": "CL",
+      "region": "Chile"
     },
     "profiles": [
       {
         "network": "LinkedIn",
-        "username": "midudev",
-        "url": "https://linkedin.com/in/midudev"
-      },
-      {
-        "network": "X",
-        "username": "midudev",
-        "url": "https://x.com/midudev"
-      },
-      {
-        "network": "GitHub",
-        "username": "midudev",
-        "url": "https://github.com/midudev"
+        "username": "felipecalderon1",
+        "url": "https://www.linkedin.com/in/felipecalderon1/"
       }
     ]
   },
   "work": [
     {
-      "name": "midudev",
-      "position": "Divulgador sobre Programación Web",
-      "url": "https://twitch.tv/midudev",
-      "startDate": "2021-01-01",
+      "name": "Globant - Latam Airlines - NDC",
+      "position": "Desarrollador y Artista de monitoreo",
+      "url": "https://www.latamtrade.com/es_cl/ndc",
+      "startDate": "2022-05-01",
       "endDate": null,
-      "summary": "Streamer de programación más visto en Español en Twitch. +1 millón de seguidores entre todas mis redes sociales. Reconocido por Google, Microsoft y GitHub por mi impacto en la comunidad de desarrolladores.",
+      "summary": "Desarrollo del portal y API NDC para Latam Airlines (NDC—New Distribution Capability). Diseño e implementación de la estrategia de observabilidad basada en SLO, dashboards operacionales y métricas de negocio. Creación de documentación técnica y comunidad interna de monitoreo para adopción y mejores prácticas.",
       "highlights": [
-        "Started the company"
+        "Portal y API NDC (New Distribution Capability)",
+        "Observabilidad basada en SLO y dashboards operacionales",
+        "Documentación técnica y comunidad de monitoreo"
       ]
     },
     {
-      "name": "Adevinta",
-      "position": "Lead Frontend Architect",
-      "url": "https://twitch.tv/midudev",
-      "startDate": "2016-06-01",
-      "endDate": "2022-09-01",
-      "summary": "Lideré una convergencia técnica entre diferentes productos y migramos una arquitectura monolítica a otra más flexible y optimizada. Fomenté buenas prácticas y mejoras en la cultura de rendimiento, además de la entrega rápida de valor a los usuarios.",
+      "name": "Papinotas",
+      "position": "Desarrollador Full Stack",
+      "url": "https://papinotas.cl",
+      "startDate": "2021-09-01",
+      "endDate": "2022-05-01",
+      "summary": "Desarrollo y evolución de la plataforma Papinotas (gestión de notas y comunicación educativa). Contribución activa en la migración de monolito a microservicios, mejora de escalabilidad y mantenibilidad. Implementación de métricas con Google Analytics, observabilidad basada en SLO y dashboards operacionales con New Relic para toma de decisiones y estabilidad del producto.",
       "highlights": [
-        "Started the company"
+        "Desarrollo full-stack de la plataforma Papinotas",
+        "Migración monolito → microservicios",
+        "Observabilidad SLO + New Relic y Analytics"
       ]
     },
     {
-      "name": "Hubii",
-      "position": "Senior FrontEnd Developer",
+      "name": "Globant - Latam Airlines",
+      "position": "Desarrollador Full Stack",
+      "url": "https://latamairlines.com",
+      "startDate": "2017-01-01",
+      "endDate": "2021-09-01",
+      "summary": "Desarrollo y mantenimiento de soluciones digitales para Latam Airlines en el ecosistema de viajes y distribución. Trabajo en plataformas web de alto tráfico, APIs y servicios backend. Colaboración con equipos multidisciplinares en mejora continua, estabilidad y escalabilidad de sistemas críticos en la industria aeronáutica.",
+      "highlights": [
+        "Desarrollo full-stack para plataformas Latam Airlines",
+        "APIs y servicios backend de alto tráfico",
+        "Estabilidad y escalabilidad de sistemas críticos"
+      ]
+    },
+    {
+      "name": "Cademsmart",
+      "position": "Desarrollador Full Stack",
+      "url": "https://cademsmart.com/",
+      "startDate": "2016-03-01",
+      "endDate": "2016-12-01",
+      "summary": "Desarrollo de plataforma de mediciones de mercado para clientes como Carozzi y Unilever. Construcción de herramientas de análisis, reportes y visualización de datos para soporte a decisiones de negocio en retail y consumo masivo.",
+      "highlights": [
+        "Plataforma de mediciones de mercado (Carozzi, Unilever)",
+        "Análisis, reportes y visualización de datos",
+        "Soporte a decisiones de negocio en retail"
+      ]
+    }, {
+      "name": "Aseguradora Magallanes",
+      "position": "Analista y desarrollador",
+      "url": "https://aseguradoramagallanes.com.pe/",
+      "startDate": "2011-12-01",
+      "endDate": "2016-02-01",
+      "summary": "Análisis, diseño y desarrollo de plataforma de pagos para Aseguradora Magallanes (Perú). Integración con sistemas contables y generación automática de asientos en SAP. Trabajo en entorno regulado del sector seguros, con foco en trazabilidad y cumplimiento.",
+      "highlights": [
+        "Plataforma de pagos para aseguradora (sector regulado)",
+        "Integración SAP y asientos contables automáticos",
+        "Análisis, diseño y desarrollo full ciclo"
+      ]
+    },
+    {
+      "name": "Anticipa S.A. - Servipag.com",
+      "position": "Analista y desarrollador",
+      "url": "https://servipag.com/",
       "startDate": "2011-03-01",
-      "endDate": "2016-05-01",
-      "summary": "Desarrollé una plataforma de noticias geolocalizadas y una API para consumir la información. Escalé los servicios para soportar la carga de más de cientos de miles de peticiones al día. Recorté los tiempos de entrega y despliegues a producción a la mitad. Colaboré con Mozilla y Telefónica para desarrollar la primera app para televisores con FirefoxOS.",
+      "endDate": "2011-12-01",
+      "summary": "Mantenimiento y evolución del portal de pagos Servipag.com. Diseño e implementación de ETL para migración masiva de usuarios y datos. Desarrollo e integración de botones de pago y pasarelas con entidades bancarias. Experiencia en fintech y medios de pago.",
       "highlights": [
-        "Started the company"
+        "Portal de pagos Servipag.com (fintech)",
+        "ETL para migración de usuarios y datos",
+        "Integración con entidades bancarias"
       ]
     }
   ],
@@ -78,51 +113,25 @@
     ]
   }],
   "education": [{
-    "institution": "Universitat Oberta de Catalunya",
-    "url": "https://www.uoc.edu/portal/es/index.html",
-    "area": "Ingeniero de Software",
-    "studyType": "Bachelor",
-    "startDate": "2003-01-01",
-    "endDate": "2009-01-01",
-    "score": "4.0",
-    "courses": [
-      "DB1101 - Basic SQL"
-    ]
+    "institution": "Instituto Profesional AIEP",
+    "url": "https://www.aiep.cl/",
+    "area": "Ingeniero de ejecución en informática",
+    "studyType": "Tecnico Profesional",
+    "startDate": "2008-03-01",
+    "endDate": "2011-12-01"
+  }, 
+  {
+    "institution": "IEDE - Business School",
+    "url": "https://www.iede.cl/",
+    "area": "Diplomado business Intelligence",
+    "studyType": "Diplomado",
+    "startDate": "2012-03-01",
+    "endDate": "2012-12-01"
   }],
-  "awards": [{
-    "title": "Award",
-    "date": "2014-11-01",
-    "awarder": "Company",
-    "summary": "There is no spoon."
-  }],
-  "certificates": [{
-    "name": "Certificate",
-    "date": "2021-11-07",
-    "issuer": "Company",
-    "url": "https://certificate.com"
-  }],
-  "publications": [{
-    "name": "Publication",
-    "publisher": "Company",
-    "releaseDate": "2014-10-01",
-    "url": "https://publication.com",
-    "summary": "Description…"
-  }],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
   "skills": [
-    {
-      "name": "HTML",
-      "level": "Master",
-      "keywords": [
-        "Desarrollo Web", "Frontend"
-      ]
-    },
-    {
-      "name": "CSS",
-      "level": "Master",
-      "keywords": [
-        "Desarrollo Web", "Frontend", "Diseño Responsive"
-      ]
-    },
     {
       "name": "JavaScript",
       "level": "Master",
@@ -131,10 +140,10 @@
       ]
     },
     {
-      "name": "Tailwind",
-      "level": "Avanzado",
+      "name": "Grafana",
+      "level": "Master",
       "keywords": [
-        "Desarrollo Web", "Frontend", "CSS Framework", "Diseño Responsive"
+        "Observabilidad", "Grafana", "Prometheus", "InfluxDB", "Elasticsearch", "Kibana"
       ]
     },
     {
@@ -194,7 +203,7 @@
     },
     {
       "language": "English",
-      "fluency": "Advanced"
+      "fluency": "Basic"
     }
   ],
   "interests": [{
@@ -204,72 +213,16 @@
       "Unicorns"
     ]
   }],
-  "references": [{
-    "name": "Jane Doe",
-    "reference": "Reference…"
-  }],
-  "projects": [
-    {
-      "name": "mars.codes",
-      "isActive": true,
-      "description": "Historia interactiva con retos de programación para viajar a Marte",
-      "highlights": [
-        "Elige tu propia aventura",
-        "En desarrollo"
-      ],
-      "url": "https://mars.codes"
-    },
-    {
-      "name": "AdventJS",
-      "isActive": true,
-      "description": "Retos de programación en JavaScript para cada día de diciembre hasta Navidad",
-      "highlights": [
-        "+1 millón de visitas",
-        "Multidioma",
-        "JavaScript & TypeScript"
-      ],
-      "url": "https://adventjs.dev"
-    },
-    {
-      "name": "Codember",
-      "isActive": true,
-      "description": "Juego interactivo de programación con retos y secretos",
-      "highlights": [
-        "+2000 usuarios activos",
-        "Retos para cualquier lenguaje"
-      ],
-      "url": "https://codember.dev"
-    },
-    {
-      "name": "codi.link",
-      "isActive": true,
-      "description": "Playground de código HTML, CSS y JavaScript para compartir",
-      "highlights": [
-        "100k visitas al mes",
-        "Desarrollado por la comunidad"
-      ],
-      "url": "https://codi.link",
-      "github": "https://github.com/midudev/codi.link"
-    },
-    {
-      "name": "Pruebas Técnicas",
-      "isActive": true,
-      "description": "Lista de pruebas técnicas de empresas para practicar programación",
-      "highlights": [
-        "100% gratuito",
-        "+500 soluciones de la comunidad"
-      ],
-      "url": "https://pruebastecnicas.com",
-      "github": "https://github.com/midudev/pruebas-tecnicas"
-    },
-    {
-      "name": "miduConf",
-      "description": "Conferencia de programación en streaming para la comunidad hispanohablante con charlas top",
-      "highlights": [
-        "+15k tickets repartidos",
-        "+50k espectadores en directo"
-      ],
-      "url": "https://miduconf.com"
-    }
-  ]
+  "references": [],
+  "projects": [ {
+    "name": "Cimadent - Software de gestión de clínicas dentales",
+    "url": "https://cimadent.cl/",
+    "github": "",
+    "description": "Participación en la segunda versión de la startup de Cimadent.",
+    "isActive": true,
+    "highlights": [
+      "startup",
+      "sistema clinico"
+    ]
+  } ]
 }

@@ -1,7 +1,7 @@
 {
-  "name": "receptive-remnant",
+  "name": "pipao11y-cv-frontend",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "0.4.1",
-    "astro": "4.3.2",
-    "hotkeypad": "0.1.0",
-    "typescript": "5.3.3"
+    "@astrojs/check": "0.9.6",
+    "astro": "5.16.15",
+    "hotkeypad": "1.0.2",
+    "typescript": "5.9.3"
   }
 }

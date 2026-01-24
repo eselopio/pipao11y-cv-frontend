@@ -62,11 +62,11 @@ import { work } from "@cv"
 
   article h3 {
     font-weight: 500;
-    color: #111;
+    color: var(--text-color, #111);
   }
 
   article a {
-    color: #111;
+    color: var(--text-color, #111);
   }
 
   article a:hover {
@@ -74,7 +74,7 @@ import { work } from "@cv"
   }
 
   article h4 {
-    color: #222;
+    color: var(--muted-color, #222);
     font-weight: 400;
   }
 
@@ -86,7 +86,7 @@ import { work } from "@cv"
   }
 
   time {
-    color: #555;
+    color: var(--muted-color, #555);
     font-size: 0.85rem;
     min-width: 102px;
     cursor: default;

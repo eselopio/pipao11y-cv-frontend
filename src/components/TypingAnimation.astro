@@ -1,0 +1,129 @@
+---
+
+const {
+  text,
+  words = [],
+  class: className = '',
+  typeSpeed = 100,
+  deleteSpeed = 50,
+  pauseDelay = 1000,
+  loop = false,
+  showCursor = true,
+  blinkCursor = true,
+  cursorStyle = 'line'
+} = Astro.props
+
+const uniqueId = `typing-${Math.random().toString(36).slice(2, 11)}`
+const wordsToAnimate = words.length > 0 ? words : (text ? [text] : [])
+---
+
+<span id={uniqueId} class={`typing-animation ${className}`} data-cursor-style={cursorStyle}>
+  <span class="typing-text"></span>
+  {showCursor && <span class="typing-cursor" data-blink={blinkCursor}></span>}
+</span>
+
+<script define:vars={{ uniqueId, wordsToAnimate, typeSpeed, deleteSpeed, pauseDelay, loop, cursorStyle }}>
+  const element = document.getElementById(uniqueId)
+  if (!element) return
+
+  const textElement = element.querySelector('.typing-text')
+  const cursorElement = element.querySelector('.typing-cursor')
+  
+  let currentWordIndex = 0
+  let currentCharIndex = 0
+  let isDeleting = false
+  let timeoutId
+
+  function type() {
+    const currentWord = wordsToAnimate[currentWordIndex]
+    
+    if (isDeleting) {
+      // Borrando
+      currentCharIndex--
+      textElement.textContent = currentWord.substring(0, currentCharIndex)
+      
+      if (currentCharIndex === 0) {
+        isDeleting = false
+        currentWordIndex++
+        
+        // Si terminamos todas las palabras y no es loop, detener
+        if (currentWordIndex >= wordsToAnimate.length) {
+          if (loop) {
+            currentWordIndex = 0
+            timeoutId = setTimeout(type, pauseDelay)
+          }
+          return
+        }
+        
+        timeoutId = setTimeout(type, pauseDelay)
+      } else {
+        timeoutId = setTimeout(type, deleteSpeed)
+      }
+    } else {
+      // Escribiendo
+      currentCharIndex++
+      textElement.textContent = currentWord.substring(0, currentCharIndex)
+      
+      if (currentCharIndex === currentWord.length) {
+        // Palabra completa
+        if (wordsToAnimate.length > 1 || loop) {
+          isDeleting = true
+          timeoutId = setTimeout(type, pauseDelay)
+        }
+      } else {
+        timeoutId = setTimeout(type, typeSpeed)
+      }
+    }
+  }
+
+  // Iniciar la animación
+  type()
+
+  // Limpiar el timeout cuando se destruya el componente
+  document.addEventListener('astro:before-swap', () => {
+    if (timeoutId) clearTimeout(timeoutId)
+  })
+</script>
+
+<style>
+  .typing-animation {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .typing-text {
+    display: inline-block;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+
+  .typing-cursor[data-blink="false"] {
+    animation: none;
+  }
+
+  /* Estilos de cursor según el tipo */
+  [data-cursor-style="line"] .typing-cursor::before {
+    content: '|';
+  }
+
+  [data-cursor-style="block"] .typing-cursor::before {
+    content: '▌';
+  }
+
+  [data-cursor-style="underscore"] .typing-cursor::before {
+    content: '_';
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+</style>

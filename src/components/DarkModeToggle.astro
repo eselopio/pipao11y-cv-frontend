@@ -1,0 +1,226 @@
+---
+// Componente para el toggle de modo oscuro
+---
+
+<button id="dark-mode-toggle" class="dark-mode-toggle no-print" aria-label="Alternar modo oscuro">
+  <svg id="sun-icon" class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg id="moon-icon" class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
+<script>
+  class DarkModeManager {
+    toggle: HTMLElement | null;
+    sunIcon: HTMLElement | null;
+    moonIcon: HTMLElement | null;
+    isDark: boolean;
+
+    constructor() {
+      this.toggle = document.getElementById('dark-mode-toggle')
+      this.sunIcon = document.getElementById('sun-icon')
+      this.moonIcon = document.getElementById('moon-icon')
+      this.isDark = this.getInitialTheme()
+      
+      this.init()
+    }
+
+    getInitialTheme() {
+      // Verificar si hay preferencia guardada
+      const saved = localStorage.getItem('dark-mode')
+      if (saved !== null) {
+        return saved === 'true'
+      }
+      
+      // Si no hay preferencia guardada, usar la preferencia del sistema
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    init() {
+      this.applyTheme()
+      this.setupEventListeners()
+      this.updateIcon()
+    }
+
+    applyTheme() {
+      if (this.isDark) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    }
+
+    updateIcon() {
+      if (this.isDark) {
+        if (this.sunIcon) this.sunIcon.style.display = 'block'
+        if (this.moonIcon) this.moonIcon.style.display = 'none'
+      } else {
+        if (this.sunIcon) this.sunIcon.style.display = 'none'
+        if (this.moonIcon) this.moonIcon.style.display = 'block'
+      }
+    }
+
+    toggleTheme() {
+      this.isDark = !this.isDark
+      this.applyTheme()
+      this.updateIcon()
+      localStorage.setItem('dark-mode', this.isDark.toString())
+    }
+
+    setupEventListeners() {
+      // Click en el botón
+      this.toggle?.addEventListener('click', () => {
+        this.toggleTheme()
+      })
+
+      // Hotkey Ctrl/Cmd + D
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+          e.preventDefault()
+          this.toggleTheme()
+        }
+      })
+
+      // Escuchar cambios en la preferencia del sistema
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Solo cambiar si no hay preferencia guardada
+        if (localStorage.getItem('dark-mode') === null) {
+          this.isDark = e.matches
+          this.applyTheme()
+          this.updateIcon()
+        }
+      })
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new DarkModeManager())
+  } else {
+    new DarkModeManager()
+  }
+</script>
+
+<style>
+  .dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-color, #fff);
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark-mode-toggle .icon {
+    transition: all 0.3s ease;
+    color: var(--text-color, #333);
+  }
+
+  .dark-mode-toggle:focus {
+    outline: 2px solid var(--accent-color, #007bff);
+    outline-offset: 2px;
+  }
+
+  /* Variables CSS para modo claro */
+  :root {
+    --bg-color: #fff;
+    --text-color: #333;
+    --border-color: #eee;
+    --accent-color: #007bff;
+    --muted-color: #666;
+    --shadow: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Variables CSS para modo oscuro */
+  :root.dark {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --border-color: #333;
+    --accent-color: #4dabf7;
+    --muted-color: #b0b0b0;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+
+  /* Aplicar variables a elementos globales */
+  html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  p {
+    color: var(--muted-color);
+  }
+
+  /* Estilos para el footer en modo oscuro */
+  :root.dark footer {
+    background: #2a2a2a;
+    border-top-color: #333;
+  }
+
+  :root.dark kbd {
+    background: #444;
+    color: #e0e0e0;
+  }
+
+  /* Estilos para el botón del footer en modo oscuro */
+  :root.dark #footer-button {
+    background: #2a2a2a;
+    border-color: #333;
+  }
+
+  /* Estilos para el hotkeypad en modo oscuro */
+  :root.dark .hotkeypad-overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  :root.dark .hotkeypad-modal {
+    background: #2a2a2a;
+    border: 1px solid #333;
+  }
+
+  :root.dark .hotkeypad-input {
+    background: #333;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+
+  :root.dark .hotkeypad-command {
+    color: #e0e0e0;
+  }
+
+  :root.dark .hotkeypad-command:hover {
+    background: #333;
+  }
+
+  @media (max-width: 600px) {
+    .dark-mode-toggle {
+      top: 10px;
+      right: 10px;
+      width: 45px;
+      height: 45px;
+    }
+  }
+</style>
