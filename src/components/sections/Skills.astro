@@ -58,19 +58,26 @@ const SKILLS_ICONS: Record<string, any> = {
 <style>
   ul {
     display: inline-flex;
-    gap: 8px;
+    gap: var(--space-unit);
     flex-wrap: wrap;
   }
 
   li {
     align-items: center;
-    background: #eee;
-    border-radius: 6px;
-    color: black;
+    background: var(--line-subtle);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
     display: flex;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     font-weight: 500;
-    gap: 4px;
-    padding: 0.2rem 0.6rem;
+    gap: calc(var(--space-unit) * 0.5);
+    padding: calc(var(--space-unit) * 0.25) calc(var(--space-unit) * 0.75);
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  li:hover {
+    background: var(--line);
+    border-color: var(--line);
   }
 </style>

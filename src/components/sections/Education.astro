@@ -39,25 +39,30 @@ import { education } from "@cv"
   ul {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: calc(var(--space-unit, 8px) * 4);
   }
 
   article h3 {
     font-weight: 500;
-    color: var(--text-color, #111);
+    color: var(--ink);
+  }
+
+  article footer p {
+    color: var(--ink-secondary);
   }
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: var(--space-unit);
   }
 
   time {
-    color: var(--muted-color, #555);
-    font-size: 0.85rem;
+    color: var(--ink-tertiary);
+    font-size: 0.8125rem;
     min-width: 102px;
+    font-variant-numeric: tabular-nums;
   }
 
   @media (width <= 700px) {

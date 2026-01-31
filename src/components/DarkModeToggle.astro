@@ -134,120 +134,146 @@
 <style>
   .dark-mode-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--bg-color, #fff);
-    border: 1px solid var(--border-color, #eee);
+    top: var(--space-unit);
+    right: var(--space-unit);
+    background: var(--paper-elevated);
+    border: 1px solid var(--line);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
   }
 
   .dark-mode-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--line-subtle);
+    box-shadow: var(--shadow-hover);
+    transform: scale(1.04);
+  }
+
+  .dark-mode-toggle:active {
+    transform: scale(0.98);
   }
 
   .dark-mode-toggle .icon {
-    transition: all 0.3s ease;
-    color: var(--text-color, #333);
+    transition: color var(--transition-fast);
+    color: var(--ink);
   }
 
   .dark-mode-toggle:focus {
-    outline: 2px solid var(--accent-color, #007bff);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 
-  /* Variables CSS para modo claro */
+  .dark-mode-toggle:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Design tokens — documento / CV: paper, ink, line */
   :root {
-    --bg-color: #fff;
-    --text-color: #333;
-    --border-color: #eee;
-    --accent-color: #007bff;
-    --muted-color: #666;
-    --shadow: rgba(0, 0, 0, 0.1);
+    --paper: #fafafa;
+    --paper-elevated: #fff;
+    --ink: #1a1a1a;
+    --ink-secondary: #444;
+    --ink-tertiary: #5c5c5c;
+    --ink-muted: #737373;
+    --line: rgba(0, 0, 0, 0.08);
+    --line-subtle: rgba(0, 0, 0, 0.05);
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --space-unit: 8px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --transition-fast: 150ms ease-out;
+    /* Aliases para compatibilidad */
+    --bg-color: var(--paper);
+    --text-color: var(--ink);
+    --border-color: var(--line);
+    --muted-color: var(--ink-muted);
   }
 
-  /* Variables CSS para modo oscuro */
   :root.dark {
-    --bg-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --border-color: #333;
-    --accent-color: #4dabf7;
-    --muted-color: #b0b0b0;
-    --shadow: rgba(0, 0, 0, 0.3);
+    --paper: #0f0f0f;
+    --paper-elevated: #1a1a1a;
+    --ink: #f0f0f0;
+    --ink-secondary: #b8b8b8;
+    --ink-tertiary: #909090;
+    --ink-muted: #737373;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-subtle: rgba(255, 255, 255, 0.05);
+    --accent: #60a5fa;
+    --accent-hover: #93c5fd;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
 
-  /* Aplicar variables a elementos globales */
   html {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--paper);
+    color: var(--ink);
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
   }
 
   body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--paper);
+    color: var(--ink);
   }
 
   p {
-    color: var(--muted-color);
+    color: var(--ink-secondary);
   }
 
-  /* Estilos para el footer en modo oscuro */
   :root.dark footer {
-    background: #2a2a2a;
-    border-top-color: #333;
+    background: var(--paper-elevated);
+    border-top-color: var(--line);
   }
 
   :root.dark kbd {
-    background: #444;
-    color: #e0e0e0;
+    background: var(--paper-elevated);
+    color: var(--ink);
+    border: 1px solid var(--line);
   }
 
-  /* Estilos para el botón del footer en modo oscuro */
   :root.dark #footer-button {
-    background: #2a2a2a;
-    border-color: #333;
+    background: var(--paper-elevated);
+    border-color: var(--line);
   }
 
-  /* Estilos para el hotkeypad en modo oscuro */
   :root.dark .hotkeypad-overlay {
     background: rgba(0, 0, 0, 0.8);
   }
 
   :root.dark .hotkeypad-modal {
-    background: #2a2a2a;
-    border: 1px solid #333;
+    background: var(--paper-elevated);
+    border: 1px solid var(--line);
   }
 
   :root.dark .hotkeypad-input {
-    background: #333;
-    color: #e0e0e0;
-    border-color: #444;
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--line);
   }
 
   :root.dark .hotkeypad-command {
-    color: #e0e0e0;
+    color: var(--ink);
   }
 
   :root.dark .hotkeypad-command:hover {
-    background: #333;
+    background: var(--line-subtle);
   }
 
   @media (max-width: 600px) {
     .dark-mode-toggle {
-      top: 10px;
-      right: 10px;
-      width: 45px;
-      height: 45px;
+      top: var(--space-unit);
+      right: var(--space-unit);
+      width: 44px;
+      height: 44px;
     }
   }
 </style>

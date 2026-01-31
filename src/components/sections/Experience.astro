@@ -57,24 +57,34 @@ import { work } from "@cv"
   ul {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: calc(var(--space-unit, 8px) * 4);
   }
 
   article h3 {
     font-weight: 500;
-    color: var(--text-color, #111);
+    color: var(--ink);
   }
 
   article a {
-    color: var(--text-color, #111);
+    color: var(--ink);
+    transition: color var(--transition-fast);
   }
 
   article a:hover {
-    text-decoration: underline;
+    color: var(--accent);
+  }
+
+  article a:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  article a:focus:not(:focus-visible) {
+    outline: none;
   }
 
   article h4 {
-    color: var(--muted-color, #222);
+    color: var(--ink-secondary);
     font-weight: 400;
   }
 
@@ -82,43 +92,45 @@ import { work } from "@cv"
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: var(--space-unit);
   }
 
   time {
-    color: var(--muted-color, #555);
-    font-size: 0.85rem;
+    color: var(--ink-tertiary);
+    font-size: 0.8125rem;
     min-width: 102px;
     cursor: default;
+    font-variant-numeric: tabular-nums;
+  }
+
+  [data-title] {
+    position: relative;
   }
 
   [data-title]:hover:after {
     opacity: 1;
-    transition: all 0.1s ease-in-out 0.5s;
     visibility: visible;
   }
 
   [data-title]:after {
     content: attr(data-title);
-    background-color: #333;
-    color: #fff;
-    font-size: .75rem;
-    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;;
+    background: var(--paper-elevated);
+    color: var(--ink);
+    font-size: 0.75rem;
+    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;
     position: absolute;
-    padding: .2rem .5rem;
-    bottom: -1.4rem;
+    padding: calc(var(--space-unit) * 0.25) calc(var(--space-unit) * 0.75);
+    bottom: calc(-1rem - 2px);
     left: 50%;
+    transform: translateX(-50%);
     white-space: nowrap;
-    box-shadow: 1px 1px 1px #222222;
+    box-shadow: var(--shadow-hover);
     opacity: 0;
-    border: 1px solid #111111;
+    border: 1px solid var(--line);
     z-index: 99999;
     visibility: hidden;
-    border-radius: 6px;
-  }
-
-  [data-title] {
-    position: relative;
+    border-radius: var(--radius-sm);
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
   }
 
   @media (width <= 700px) {
