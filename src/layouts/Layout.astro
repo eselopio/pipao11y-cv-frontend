@@ -1,5 +1,5 @@
 ---
-import Analytics from '@vercel/analytics/astro';
+import Analytics from '@vercel/analytics/astro'
 import { basics } from "@cv"
 import DarkModeToggle from "@/components/DarkModeToggle.astro"
 
@@ -16,7 +16,7 @@ const { image, summary, url } = basics
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <Analytics mode="production"/>
+    <Analytics mode="auto"/>
     <title>{title}</title>
     <meta name="description" content={summary} />
     <meta name="viewport" content="width=device-width" />

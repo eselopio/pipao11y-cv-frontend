@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro"
+import SpeedInsights from "@vercel/speed-insights/astro"
 
 import About from "@/components/sections/About.astro"
 import Education from "@/components/sections/Education.astro"
@@ -26,6 +27,7 @@ const { name, label } = basics
   <KeyboardManager />
 </Layout>
 
+<SpeedInsights />
 <style>
   main {
     padding: calc(var(--space-unit, 8px) * 4);
