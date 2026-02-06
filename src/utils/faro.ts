@@ -1,4 +1,4 @@
-import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk'
+import { getWebInstrumentations, initializeFaro, UserActionInstrumentation } from '@grafana/faro-web-sdk'
 import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 
 export function initFaro() {
@@ -17,6 +17,7 @@ export function initFaro() {
     
         // Tracing package to get end-to-end visibility for HTTP requests.
         new TracingInstrumentation(),
+        new UserActionInstrumentation(),
         ],
         });
     }
