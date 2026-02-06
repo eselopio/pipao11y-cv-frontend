@@ -39,6 +39,10 @@ const { image, summary, url } = basics
   <body>
     <DarkModeToggle />
     <slot />
+    <script>
+      import { initFaro } from '../utils/faro';
+      initFaro();
+    </script>
   </body>
 </html>
 
