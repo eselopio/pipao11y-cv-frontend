@@ -4,7 +4,7 @@ import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 export function initFaro() {
     if (typeof window !== 'undefined') {
         initializeFaro({
-        url: 'https://faro-collector-prod-sa-east-1.grafana.net/collect/857715f4133863ff696cded10f691b82',
+        url: import.meta.env.PUBLIC_FARO_URL,
         app: {
         name: 'pipa11y-cv',
         version: '1.0.0',
@@ -21,4 +21,4 @@ export function initFaro() {
         ],
         });
     }
-}
+}   
