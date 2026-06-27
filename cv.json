@@ -247,6 +247,17 @@
         "esencialismo",
         "economia"
       ]
+    },
+    {
+      "name": "alma lectora - Frases diarias",
+      "url": "https://almalectora.pipa-o11y.xyz/",
+      "github": "",
+      "description": "Un espacio diario para la literatura, la reflexión y el pensamiento crítico",
+      "isActive": true,
+      "highlights": [
+        "reflexiones",
+        "filosofia"
+      ]
     }
   ]
 }
