@@ -138,4 +138,15 @@ import { work } from "@cv"
       text-align: right;
     }
   }
+
+  @media print {
+    :global(html.printing-cv) ul {
+      gap: calc(var(--space-unit, 8px) * 2.5);
+    }
+
+    /* Página 2 del PDF: comienza en el tercer trabajo */
+    :global(html.printing-cv) li:nth-child(3) {
+      break-before: page;
+    }
+  }
 </style>

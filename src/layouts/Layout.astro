@@ -113,6 +113,15 @@ const { image, summary, url } = basics
     display: none !important;
   }
 
+  .cv-page-break {
+    display: none;
+  }
+
+  @page {
+    size: letter;
+    margin: 12mm 14mm;
+  }
+
   @media print {
     .no-print {
       display: none !important;
@@ -128,6 +137,47 @@ const { image, summary, url } = basics
 
     article {
       break-inside: avoid;
+    }
+
+    /* La impresión/PDF siempre usa el tema claro, nunca modo oscuro */
+    html:root,
+    html:root.dark {
+      --paper: #fafafa;
+      --paper-elevated: #fff;
+      --ink: #1a1a1a;
+      --ink-secondary: #444;
+      --ink-tertiary: #5c5c5c;
+      --ink-muted: #737373;
+      --line: rgba(0, 0, 0, 0.08);
+      --line-subtle: rgba(0, 0, 0, 0.05);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Ocultar el cursor de la animación de tipeo en el PDF */
+    .typing-cursor {
+      display: none !important;
+    }
+
+    /* Modo "Versión CV": layout compacto distribuido en 3 páginas */
+    html.printing-cv * {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    html.printing-cv main {
+      padding: 0;
+    }
+
+    html.printing-cv section {
+      margin-bottom: calc(var(--space-unit, 8px) * 3.5);
+    }
+
+    html.printing-cv .cv-page-break {
+      display: block;
+      break-before: page;
     }
   }
 </style>
