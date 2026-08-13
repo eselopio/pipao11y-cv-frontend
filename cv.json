@@ -4,7 +4,7 @@
     "label": "Ingeniero de Software y observabilista 🔭 Data driven dev ❤️",
     "image": "/me.webp",
     "email": "f.calderon1988@gmail.com",
-    "phone": "+56 9 999999999",
+    "phone": "+56 9 98638194",
     "url": "https://felipecalderon1.com",
     "summary": "Ingeniero de Software con +10 años construyendo productos digitales de alto impacto en fintech, aeronáutica, retail y edtech. Especialista en full-stack (JavaScript/TypeScript, Node, React), observabilidad basada en SLO y métricas, y evolución de monolitos a arquitecturas escalables. Experiencia liderando iniciativas de monitoreo, documentación y comunidades técnicas. Perfil data-driven, orientado a resultados y acostumbrado a entornos B2B/B2C de operación global. Resido en Santiago, Chile.",
     "location": {
@@ -29,11 +29,12 @@
       "url": "https://www.latamtrade.com/es_cl/ndc",
       "startDate": "2022-05-01",
       "endDate": null,
-      "summary": "Desarrollo del portal y API NDC para Latam Airlines (NDC—New Distribution Capability). Diseño e implementación de la estrategia de observabilidad basada en SLO, dashboards operacionales y métricas de negocio. Creación de documentación técnica y comunidad interna de monitoreo para adopción y mejores prácticas.",
+      "summary": "Desarrollo del portal y API NDC para Latam Airlines (NDC—New Distribution Capability). Diseño e implementación de la estrategia de observabilidad basada en SLO, dashboards operacionales y métricas de negocio. Creación de documentación técnica y comunidad interna de monitoreo para adopción y mejores prácticas. En la actualidad, estoy volcando esta experiencia en forjar agentes, skills y herramientas para flujos de desarrollo apoyados de observabilidad.",
       "highlights": [
         "Portal y API NDC (New Distribution Capability)",
         "Observabilidad basada en SLO y dashboards operacionales",
-        "Documentación técnica y comunidad de monitoreo"
+        "Documentación técnica y comunidad de monitoreo",
+        "Agentes, skills y herramientas para flujos de desarrollo con observabilidad"
       ]
     },
     {

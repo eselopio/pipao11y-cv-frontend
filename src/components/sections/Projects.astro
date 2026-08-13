@@ -10,6 +10,8 @@ import { projects } from "@cv"
     {
       projects.map(
         ({ url, description, highlights, name, isActive, github }) => {
+          const printUrl = url.replace(/^https?:\/\//, "").replace(/\/$/, "")
+
           return (
             <li>
               <article>
@@ -30,6 +32,7 @@ import { projects } from "@cv"
                       </a>
                     )}
                   </h3>
+                  <span class="cv-print-url">{printUrl}</span>
                   <p>{description}</p>
                 </header>
                 <footer>
@@ -135,6 +138,10 @@ import { projects } from "@cv"
     align-items: center;
   }
 
+  .cv-print-url {
+    display: none;
+  }
+
   @keyframes flicker {
     0%, 100% {
       opacity: 1;
@@ -166,6 +173,20 @@ import { projects } from "@cv"
   @media print {
     article h3 span {
       animation-name: none;
+    }
+
+    :global(html.printing-cv) ul {
+      grid-template-columns: repeat(2, 1fr);
+      margin-inline: 0;
+    }
+
+    /* URL visible solo en la versión CV (PDF) */
+    :global(html.printing-cv) .cv-print-url {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 0.6875rem;
+      margin-bottom: calc(var(--space-unit) * 0.5);
+      word-break: break-all;
     }
   }
 </style>
