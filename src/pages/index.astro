@@ -9,21 +9,31 @@ import Hero from "@/components/sections/Hero.astro"
 import Projects from "@/components/sections/Projects.astro"
 import Skills from "@/components/sections/Skills.astro"
 import KeyboardManager from "@/components/KeyboardManager.astro"
+import FlipScene from "@/components/FlipScene.astro"
+import HumanHero from "@/components/sections/human/HumanHero.astro"
+import HumanTimeline from "@/components/sections/human/HumanTimeline.astro"
 
 import { basics } from "@cv"
 const { name, label } = basics
 ---
 
 <Layout title={`Portafolio de ${name} - ${label}`}>
-  <main>
-    <Hero />
-    <About />
-    <Experience />
-    <div class="cv-page-break" aria-hidden="true"></div>
-    <Education />
-    <Projects />
-    <Skills />
-  </main>
+  <FlipScene>
+    <main slot="front">
+      <Hero />
+      <About />
+      <Experience />
+      <div class="cv-page-break" aria-hidden="true"></div>
+      <Education />
+      <Projects />
+      <Skills />
+    </main>
+
+    <main slot="back" class="human-main">
+      <HumanHero />
+      <HumanTimeline />
+    </main>
+  </FlipScene>
 
   <KeyboardManager />
 </Layout>

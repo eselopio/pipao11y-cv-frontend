@@ -1,0 +1,177 @@
+---
+import { now, activities, future } from "@human"
+import Section from "@/components/Section.astro"
+---
+
+<Section title="Mi línea de vida">
+  <ol class="timeline">
+    <li class="entry">
+      <div class="node" aria-hidden="true">
+        <span class="node-icon">🌱</span>
+      </div>
+      <div class="content">
+        <header>
+          <h3>{now.title}</h3>
+          <span class="period">Presente</span>
+        </header>
+        <p>{now.summary}</p>
+      </div>
+    </li>
+
+    {
+      activities.map(({ icon, title, status, description, period }) => (
+        <li class="entry">
+          <div class="node" aria-hidden="true">
+            <span class="node-icon">{icon}</span>
+          </div>
+          <div class="content">
+            <header>
+              <h3>{title}</h3>
+              <span class="badge">{status}</span>
+              <span class="period">{period}</span>
+            </header>
+            <p>{description}</p>
+          </div>
+        </li>
+      ))
+    }
+
+    <li class="entry future">
+      <div class="node" aria-hidden="true">
+        <span class="node-icon">🔭</span>
+      </div>
+      <div class="content">
+        <header>
+          <h3>{future.title}</h3>
+          <span class="period">Hacia adelante</span>
+        </header>
+        <p>{future.summary}</p>
+        <ul class="goals">
+          {future.goals.map((goal) => <li>{goal}</li>)}
+        </ul>
+      </div>
+    </li>
+  </ol>
+</Section>
+
+<style>
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit, 8px) * 3);
+    padding-left: calc(var(--space-unit, 8px) * 5);
+  }
+
+  /* Línea vertical del timeline */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--line);
+    border-radius: 2px;
+  }
+
+  .entry {
+    position: relative;
+    display: flex;
+    gap: calc(var(--space-unit, 8px) * 1.5);
+  }
+
+  .node {
+    position: absolute;
+    left: calc(var(--space-unit, 8px) * -5);
+    top: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper-elevated);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    z-index: 1;
+  }
+
+  .node-icon {
+    font-size: 0.9375rem;
+    line-height: 1;
+  }
+
+  .future .node {
+    border-color: var(--accent);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit, 8px) * 0.75);
+    padding-bottom: calc(var(--space-unit, 8px) * 0.5);
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: calc(var(--space-unit, 8px) * 0.75);
+  }
+
+  h3 {
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .badge {
+    background: var(--line-subtle);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    padding: 2px 8px;
+  }
+
+  .period {
+    color: var(--ink-muted);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .goals {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit, 8px) * 0.5);
+    margin-top: calc(var(--space-unit, 8px) * 0.25);
+  }
+
+  .goals li {
+    position: relative;
+    color: var(--ink-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding-left: calc(var(--space-unit, 8px) * 2);
+  }
+
+  .goals li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  @media (width <= 700px) {
+    .timeline {
+      padding-left: calc(var(--space-unit, 8px) * 4.5);
+    }
+
+    .entry {
+      gap: var(--space-unit, 8px);
+    }
+  }
+</style>
