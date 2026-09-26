@@ -161,6 +161,16 @@ const { image, summary, url } = basics
       display: none !important;
     }
 
+    /* La impresión/PDF siempre usa la versión profesional, nunca la cara humana */
+    .flip-card {
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .flip-back {
+      display: none !important;
+    }
+
     /* Modo "Versión CV": layout compacto distribuido en 3 páginas */
     html.printing-cv * {
       print-color-adjust: exact;

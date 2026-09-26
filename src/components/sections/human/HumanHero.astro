@@ -1,0 +1,96 @@
+---
+import { basics } from "@human"
+import Section from "@/components/Section.astro"
+import BlurFade from "@/components/BlurFade.astro"
+
+const { nickname, tagline, image, mood } = basics
+---
+
+<Section>
+  <div class="container">
+    <div class="info">
+      <span class="kicker">El lado humano de</span>
+      <h1>{nickname}</h1>
+      <h2>{tagline}</h2>
+      <span class="mood">{mood}</span>
+    </div>
+    <BlurFade delay={0.2} inView={true} direction="down">
+      <figure>
+        <img src={image} alt={nickname} />
+      </figure>
+    </BlurFade>
+  </div>
+</Section>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit, 8px) * 0.5);
+    padding-right: calc(var(--space-unit, 8px) * 4);
+  }
+
+  .kicker {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  h2 {
+    color: var(--ink-secondary);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    text-wrap: balance;
+  }
+
+  .mood {
+    color: var(--ink-tertiary);
+    font-size: 0.8125rem;
+    letter-spacing: -0.02em;
+  }
+
+  img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 120px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+  }
+
+  @media (width <= 700px) {
+    .container {
+      flex-direction: column-reverse;
+    }
+
+    .info {
+      justify-content: center;
+      align-items: center;
+      padding-right: 0;
+      text-align: center;
+    }
+
+    figure {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
+  }
+</style>

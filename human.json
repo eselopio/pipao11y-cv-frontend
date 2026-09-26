@@ -1,0 +1,52 @@
+{
+  "basics": {
+    "nickname": "Pipa",
+    "tagline": "Persona antes que ingeniero 🌱",
+    "image": "/me.webp",
+    "mood": "Tranquilo, curioso y con las manos ocupadas"
+  },
+  "now": {
+    "title": "Quién soy ahora",
+    "summary": "Vivo en Santiago, Chile, y aunque gran parte de mi día gira en torno al código, intento que mi vida no se resuma a eso. Vivo con mi mujer, mis dos hijas y mi perrita: soy el hombre de la casa, así que mi rol oficial es abrir frascos, reparar cosas y perder las votaciones 4 a 1. Me gusta aprender cosas con las manos, leer un libro de distintos temas (quiero comenzar con Asimov \uD83E\uDD16) y compartir tiempo de calidad con las personas que quiero. Estoy en una etapa de equilibrio: menos pantallas, más texturas, aromas y conversaciones lentas. Y abrigando un sueño concreto: vivir en el sur de Chile, específicamente en Valdivia ❤️"
+  },
+  "activities": [
+    {
+      "icon": "🧶",
+      "title": "Tejido",
+      "status": "En curso",
+      "description": "Aprendiendo puntadas básicas y trabajando en mis primeros tejidos. Me sorprende lo meditativo que es: cada vuelta exige presencia y paciencia, algo que el teclado no siempre me pide. Todo empezó gracias a mi hija, que me inspiró a intentarlo.",
+      "period": "2026 — hoy"
+    },
+    {
+      "icon": "☕",
+      "title": "Preparación de café",
+      "status": "Aprendiendo",
+      "description": "Explorando métodos de filtrado (V60, Chemex) y calibrando molienda y tiempos de extracción. El objetivo es simple: que la primera taza del día sea un ritual y no solo cafeína.",
+      "period": "2026 — hoy"
+    },
+    {
+      "icon": "📚",
+      "title": "Lectura",
+      "status": "Hábito",
+      "description": "Alternando entre ciencia ficción y ensayos de divulgación. Actualmente con un libro a medio leer en cada rincón de la casa.",
+      "period": "Siempre"
+    },
+    {
+      "icon": "🎨",
+      "title": "Pixel art",
+      "status": "Proyecto a largo plazo",
+      "description": "Mi gran misión: recrear a los 150 Pokémon originales en pixel art y convertir mi baño en el mejor baño temático del mundo.",
+      "period": "Fines de semana"
+    }
+  ],
+  "future": {
+    "title": "Quién quiero ser",
+    "summary": "Quiero ser alguien que envejece con la curiosidad intacta: una persona que sabe hacer cosas con sus manos, que cultiva relaciones profundas y que usa la tecnología como herramienta, no como el centro de su identidad.",
+    "goals": [
+      "Dominar al menos un oficio manual: tejido, carpintería o el arte del café",
+      "Preparar un café del que me sienta genuinamente orgulloso",
+      "Vivir más lento y con menos ruido digital",
+      "Compartir lo que aprendo con mi comunidad cercana"
+    ]
+  }
+}

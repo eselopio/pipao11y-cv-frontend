@@ -1,0 +1,120 @@
+---
+// Escena 3D que envuelve las dos caras del CV:
+// - slot "front": versión profesional
+// - slot "back": versión humana
+// Se voltea con el evento "flip:toggle" (comando Flip de la paleta).
+---
+
+<div class="flip-scene">
+  <div class="flip-card" id="flip-card">
+    <div class="flip-face flip-front" id="flip-front">
+      <slot name="front" />
+    </div>
+    <div class="flip-face flip-back" id="flip-back" aria-hidden="true" inert>
+      <slot name="back" />
+    </div>
+  </div>
+</div>
+
+<script>
+  class FlipManager {
+    front: HTMLElement | null
+    back: HTMLElement | null
+    isFlipped: boolean
+
+    constructor() {
+      this.front = document.getElementById("flip-front")
+      this.back = document.getElementById("flip-back")
+      this.isFlipped = false
+      this.init()
+    }
+
+    init() {
+      document.addEventListener("flip:toggle", () => this.toggle())
+    }
+
+    toggle() {
+      this.isFlipped = !this.isFlipped
+      document.documentElement.classList.toggle("flipped", this.isFlipped)
+
+      // Accesibilidad: la cara oculta no debe ser focuseable ni leída
+      this.front?.toggleAttribute("inert", this.isFlipped)
+      this.front?.setAttribute("aria-hidden", this.isFlipped.toString())
+      this.back?.toggleAttribute("inert", !this.isFlipped)
+      this.back?.setAttribute("aria-hidden", (!this.isFlipped).toString())
+
+      // Al volver a la versión profesional, subir al inicio de la página
+      if (!this.isFlipped) {
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+      }
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => new FlipManager())
+  } else {
+    new FlipManager()
+  }
+</script>
+
+<style>
+  .flip-scene {
+    perspective: 2000px;
+  }
+
+  .flip-card {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .flip-face {
+    grid-area: 1 / 1;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+
+  :global(html.flipped) .flip-card {
+    transform: rotateY(180deg);
+  }
+
+  /* prefers-reduced-motion: crossfade simple en vez de rotación 3D */
+  @media (prefers-reduced-motion: reduce) {
+    .flip-scene {
+      perspective: none;
+    }
+
+    .flip-card {
+      transform-style: flat;
+      transition: none;
+    }
+
+    .flip-face {
+      transition: opacity 0.2s ease-out;
+    }
+
+    .flip-back {
+      transform: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    :global(html.flipped) .flip-card {
+      transform: none;
+    }
+
+    :global(html.flipped) .flip-front {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    :global(html.flipped) .flip-back {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+</style>
